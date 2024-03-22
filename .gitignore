@@ -1,0 +1,4 @@
+# Répertoires
+__pycache__/
+old/
+**/*.json
