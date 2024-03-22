@@ -6,7 +6,7 @@ from functions.connection_postgres import connect_to_postgres, close_connection
 from functions.delete_data_48h import delete_old_data_48h
 
 # choix du département
-department = 'hérault'
+department = '34'
 
 def main():
     conn = connect_to_postgres()
@@ -17,7 +17,7 @@ def main():
         if cities_data:
             meteo = MeteoFranceClient()
             for city_data in cities_data:
-                longitude, latitude, label, department_name = city_data
+                longitude, latitude, label, department_number = city_data
                 city_forecast = meteo.get_forecast(latitude, longitude)
                 data = city_forecast.forecast
                 for item in data:
@@ -31,10 +31,11 @@ def main():
                     weather_icon = item['weather']['icon']
                     weather_desc = item['weather']['desc']
                     label_dt_key = f"{label}/{dt}"
-                    insert_data = (longitude, latitude, label, department_name, label_dt_key, dt, temperature, humidity, sea_level, wind_speed, wind_gust, wind_direction, weather_icon, weather_desc)
+                    insert_data = (longitude, latitude, label, department_number, label_dt_key, dt, temperature, humidity, sea_level, wind_speed, wind_gust, wind_direction, weather_icon, weather_desc)
                     insert_weather_data(conn, insert_data)
         close_connection(conn)
         print("Data transfer to PostgreSQL succeeded!")
 
 if __name__ == "__main__":
     main()
+

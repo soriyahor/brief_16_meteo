@@ -4,12 +4,12 @@ def delete_old_data_48h(conn):
 
         cur.execute("""
             DELETE FROM weather
-            WHERE loaded_at < NOW() - INTERVAL '48 hour';
+            WHERE loaded_at < NOW() - INTERVAL '5minutes';
         """)
         conn.commit()
 
     except Exception as e:
         conn.rollback()
-        print(f"Error deleting data older than 48 hours: {e}")
+        print(f"Error deleting data older than 12 hours: {e}")
     finally:
         cur.close()
