@@ -10,7 +10,7 @@ def create_weather_table(conn):
                 label VARCHAR(100),
                 longitude FLOAT,
                 latitude FLOAT,                  
-                dt BIGINT,
+                dt TIMESTAMP,
                 temperature FLOAT,
                 humidity INT,
                 sea_level FLOAT,
@@ -32,7 +32,7 @@ def insert_weather_data(conn, data):
         cur = conn.cursor()
         cur.execute("""
             INSERT INTO weather (longitude, latitude, label, department_name, label_dt_key, dt, temperature, humidity, sea_level, wind_speed, wind_gust, wind_direction, weather_icon, weather_desc)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, TO_TIMESTAMP(%s), %s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (id) DO NOTHING;
         """, data)
         conn.commit()

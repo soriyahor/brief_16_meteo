@@ -1,8 +1,8 @@
 
 import json
-from connection_postgres import connect_to_postgres
+from functions.connection_db import connect_db
 
-conn = connect_to_postgres()
+conn = connect_db()
 if conn:
 
     try:

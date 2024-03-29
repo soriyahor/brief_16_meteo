@@ -5,7 +5,7 @@ def fetch_cities_data(conn, department_number):
         cur.execute("""
             SELECT longitude, latitude, label, department_number
             FROM cities
-            WHERE department_name = %s;
+            WHERE department_number = %s;
         """, (department_number,))
         return cur.fetchall()
     except Exception as e:

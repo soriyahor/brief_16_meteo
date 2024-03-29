@@ -2,14 +2,15 @@ from meteofrance_api import MeteoFranceClient
 
 from functions.fetch_cities_data import fetch_cities_data
 from functions.weather_table import create_weather_table,insert_weather_data
-from functions.connection_postgres import connect_to_postgres, close_connection
+from functions.connection_db import connect_db, close_connection
 from functions.delete_data_48h import delete_old_data_48h
+# from nlp import text_to_speech
 
 # choix du département
 department = '34'
 
 def main():
-    conn = connect_to_postgres()
+    conn = connect_db(dbname='postgres', user='postgres', password='soriya')
     if conn:
         delete_old_data_48h(conn)
         create_weather_table(conn)
@@ -38,4 +39,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# {'dt': 1711119600, 
+#  'T': {'value': 18.5, 'windchill': 20.6}, 
+#  'humidity': 65, 
+#  'sea_level': 1018.4, 
+#  'wind': {'speed': 4, 'gust': 0, 'direction': 165, 'icon': 'SSE'}, 
+#  'rain': {'1h': 0}, 
+#  'snow': {'1h': 0}, 
+#  'iso0': 3400, 
+#  'rain snow limit': 'Non pertinent',
+#    'clouds': 70,
+#      'weather': {'icon': 'p2j', 'desc': 'Eclaircies'}}
+
 
