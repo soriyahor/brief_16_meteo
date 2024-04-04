@@ -4,7 +4,7 @@ FROM python:3.11-alpine
 # Définissez le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copiez un fichier index.html dans le répertoire de travail du conteneur
+# Copiez le contenu du dossier "template" dans le répertoire de travail du conteneur
 COPY . .
 
 # Exposez le port sur lequel votre serveur HTTP Python fonctionnera
