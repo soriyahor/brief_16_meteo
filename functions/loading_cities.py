@@ -38,7 +38,6 @@ def load_cities(conn):
                         latitude, longitude, department_name,
                         department_number, region_name, region_geojson_name
                     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                    ON CONFLICT (insee_code, city_code) DO NOTHING
                 """, (
                     city['insee_code'], city['city_code'], city['zip_code'], city['label'],
                     latitude, longitude,

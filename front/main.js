@@ -1,8 +1,13 @@
 document.getElementById('btn-submit').addEventListener('click', async (event) => {
     event.preventDefault();
-    const name_city = document.getElementById('name_city').value;
-    const date = document.getElementById('date').value;
-    const hour = document.getElementById('hour').value;
+    const name_city = document.getElementById('name_city').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const hour = document.getElementById('hour').value.trim();
+
+    if (!name_city || !date || !hour) {
+        alert("Please fill in all fields.");
+        return; 
+    }
 
     try {
         const response = await fetch(`http://soriyab16-fastfront.francecentral.azurecontainer.io:8020/forecast?city=${name_city}&date=${date}&hour=${hour}`);
