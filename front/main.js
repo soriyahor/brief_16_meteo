@@ -5,8 +5,9 @@ document.getElementById('btn-submit').addEventListener('click', async (event) =>
     const hour = document.getElementById('hour').value;
 
     try {
-        const response = await fetch(`http://localhost:8020/forecast?city=${name_city}&date=${date}&hour=${hour}`);
-        
+        const response = await fetch(`http://soriyab16-fastfront.francecentral.azurecontainer.io:8020/forecast?city=${name_city}&date=${date}&hour=${hour}`);
+        // const response = await fetch(`http://localhost:8020/forecast?city=${name_city}&date=${date}&hour=${hour}`);
+      
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

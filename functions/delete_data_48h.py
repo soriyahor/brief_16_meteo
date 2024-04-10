@@ -11,5 +11,5 @@ def delete_old_data_48h(conn):
     except Exception as e:
         conn.rollback()
         print(f"Error deleting data older than 24 hours: {e}")
-    finally:
-        cur.close()
+    # finally:
+    #     cur.close()

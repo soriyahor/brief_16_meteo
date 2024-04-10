@@ -46,7 +46,7 @@ button:hover {
     background-color: #45a049;
 }
 
-#result {
+#audio {
     margin-top: 20px;
     text-align: center;
 }
@@ -55,6 +55,11 @@ button:hover {
     color: red;
     font-style: italic;
     margin-top: 10px;
+}
+
+#date{
+    width: 173px;
+    height: 30px;
 }
 
 

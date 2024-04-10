@@ -17,7 +17,8 @@
     <input type="text" id="name_city">
 
     <label for="date">date</label>
-    <input type="text" id="date" placeholder="2024-03-26">
+    <!-- <input type="text" id="date" placeholder="2024-03-26"> -->
+    <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime('+72 hours')); ?>"><br><br>
 
     <label for="hour">hour</label>
     <input type="number" id="hour">

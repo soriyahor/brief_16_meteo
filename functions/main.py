@@ -1,9 +1,10 @@
 from meteofrance_api import MeteoFranceClient
 
-from functions.fetch_cities_data import fetch_cities_data
-from functions.weather_table import create_weather_table,insert_weather_data
-from functions.connection_db import connect_db, close_connection
-from functions.delete_data_48h import delete_old_data_48h
+from fetch_cities_data import fetch_cities_data
+from weather_table import create_weather_table,insert_weather_data
+from connection_db import connect_db, close_connection
+from delete_data_48h import delete_old_data_48h
+from loading_cities import load_cities
 # from nlp import text_to_speech
 
 # choix du département
@@ -12,7 +13,8 @@ department = '34'
 def main():
     conn = connect_db(dbname='postgres', user='postgres', password='soriya')
     if conn:
-        delete_old_data_48h(conn)
+        load_cities(conn)
+        
         create_weather_table(conn)
         cities_data = fetch_cities_data(conn, department)
         if cities_data:
@@ -34,6 +36,7 @@ def main():
                     label_dt_key = f"{label}/{dt}"
                     insert_data = (longitude, latitude, label, department_number, label_dt_key, dt, temperature, humidity, sea_level, wind_speed, wind_gust, wind_direction, weather_icon, weather_desc)
                     insert_weather_data(conn, insert_data)
+        delete_old_data_48h(conn)
         close_connection(conn)
         print("Data transfer to PostgreSQL succeeded!")
 

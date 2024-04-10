@@ -1,6 +1,6 @@
 import psycopg2
 
-def connect_db(dbname, user, password, host='localhost', port='5432'):
+def connect_db(dbname, user, password, host='soriyab16-mateo.francecentral.azurecontainer.io', port='5432'):
     try:
         conn = psycopg2.connect(
             dbname=dbname,
